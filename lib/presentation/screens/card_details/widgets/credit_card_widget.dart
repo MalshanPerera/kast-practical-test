@@ -60,8 +60,7 @@ class CreditCardWidget extends StatelessWidget {
           const SizedBox(height: AppDimensions.spacingXl),
           Text(
             card.cardNumber,
-            style: TextStyle(
-              fontSize: 18,
+            style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w500,
               color: colors.onPrimary,
               letterSpacing: 2,
@@ -78,16 +77,14 @@ class CreditCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.validDate,
-                    style: TextStyle(
-                      fontSize: 10,
+                    style: theme.textTheme.labelSmall?.copyWith(
                       color: colors.onPrimary.withValues(alpha: 0.8),
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     card.expiryDate,
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: colors.onPrimary.withValues(alpha: 0.9),
                     ),

@@ -21,29 +21,34 @@ abstract final class AppTheme {
     scaffoldBackgroundColor: AppColors.background,
     textTheme: const TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 28,
+        fontSize: 30,
         fontWeight: FontWeight.bold,
         color: AppColors.textPrimary,
       ),
       headlineMedium: TextStyle(
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: FontWeight.bold,
         color: AppColors.textPrimary,
       ),
       titleLarge: TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w600,
         color: AppColors.textPrimary,
       ),
       titleMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
       ),
-      bodyLarge: TextStyle(fontSize: 16, color: AppColors.textPrimary),
-      bodyMedium: TextStyle(fontSize: 14, color: AppColors.textPrimary),
+      bodyLarge: TextStyle(fontSize: 17, color: AppColors.textPrimary),
+      bodyMedium: TextStyle(fontSize: 15, color: AppColors.textPrimary),
       labelLarge: TextStyle(
-        fontSize: 14,
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+      labelSmall: TextStyle(
+        fontSize: 11,
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
       ),

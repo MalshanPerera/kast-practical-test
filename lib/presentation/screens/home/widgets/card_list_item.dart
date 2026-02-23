@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/constants/responsive.dart';
 import '../../../../core/utils/currency_formatter.dart';
@@ -33,8 +34,7 @@ class CardListItem extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     color: colors.primary.withValues(alpha: 0.1),
-                    borderRadius:
-                        BorderRadius.circular(AppDimensions.radiusSm),
+                    borderRadius: BorderRadius.circular(AppDimensions.radiusSm),
                   ),
                   child: Icon(
                     Icons.credit_card_outlined,
@@ -45,7 +45,7 @@ class CardListItem extends StatelessWidget {
                 const SizedBox(width: AppDimensions.spacingMd),
                 Text(
                   '${card.currency} *${card.cardNumber.split(' ').last}',
-                  style: theme.textTheme.bodyMedium?.copyWith(
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: colors.onSurface,
                   ),
@@ -53,7 +53,7 @@ class CardListItem extends StatelessWidget {
                 const Spacer(),
                 Text(
                   '${CurrencyFormatter.format(card.balance)} ${card.currency}',
-                  style: theme.textTheme.bodyMedium?.copyWith(
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: colors.onSurface,
                   ),

@@ -41,8 +41,7 @@ class BalanceDisplay extends StatelessWidget {
               padding: const EdgeInsets.only(top: 2, right: 2),
               child: Text(
                 CurrencyFormatter.symbolFor(currency),
-                style: TextStyle(
-                  fontSize: 18,
+                style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: color,
                 ),
@@ -50,8 +49,7 @@ class BalanceDisplay extends StatelessWidget {
             ),
             Text(
               CurrencyFormatter.format(balance),
-              style: TextStyle(
-                fontSize: 28,
+              style: theme.textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: color,
               ),

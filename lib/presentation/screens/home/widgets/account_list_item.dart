@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/constants/responsive.dart';
 import '../../../../core/theme/app_color_extension.dart';
@@ -64,9 +65,7 @@ class _AccountListItemState extends State<AccountListItem> {
                     Expanded(
                       child: Text(
                         account.accountNumber,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 12,
-                        ),
+                        style: theme.textTheme.bodyLarge,
                       ),
                     ),
                     AnimatedRotation(
@@ -110,11 +109,11 @@ class _AccountListItemState extends State<AccountListItem> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       CurrencyFormatter.symbolFor(b.currency),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: colors.primary,
-                                      ),
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            color: colors.primary,
+                                          ),
                                     ),
                                   ),
                                   const SizedBox(
