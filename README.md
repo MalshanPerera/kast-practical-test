@@ -96,6 +96,7 @@ No env vars or API keys; everything runs on mock data.
 
 This demo keeps dependencies minimal. For production apps, the same structure can be extended with:
 
+- **Clean Architecture** — Introduce clear **domain** (entities, use cases), **data** (repositories, data sources), and **presentation** (UI, state) layers. Use cases and repository abstractions keep business logic testable and independent of frameworks and data sources.
 - **State management** — Replace `ValueNotifier` + `InheritedWidget` with **Bloc** or **Riverpod** for clearer flows, testability, and scaling.
 - **Responsiveness** — Use **LayoutBuilder** / **OrientationBuilder** for layout changes by size or orientation, or [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) for design-based scaling (e.g. `.w`, `.h` from a design size).
 - **Localization** — `AppStrings` centralizes copy today; for multiple languages use [easy_localization](https://pub.dev/packages/easy_localization) (JSON/CSV, plurals, RTL, codegen).
