@@ -4,9 +4,9 @@ import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 import '../../../core/theme/app_color_extension.dart';
-import '../../../core/utils/currency_formatter.dart';
 import '../../../data/mock/mock_data.dart';
 import '../../../data/models/card_model.dart';
+import '../../widgets/common/balance_display.dart';
 import '../../widgets/list_items/operation_list_item.dart';
 import 'widgets/credit_card_widget.dart';
 
@@ -71,14 +71,10 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
                   child: Column(
                     children: [
                       Center(
-                        child: Text(
-                          CurrencyFormatter.formatBalance(
-                            card.balance,
-                            card.currency,
-                          ),
-                          style: theme.textTheme.headlineLarge?.copyWith(
-                            color: colors.onSurface,
-                          ),
+                        child: BalanceDisplay(
+                          balance: card.balance,
+                          currency: card.currency,
+                          color: colors.onSurface,
                         ),
                       ),
                       const SizedBox(height: AppDimensions.spacingLg),

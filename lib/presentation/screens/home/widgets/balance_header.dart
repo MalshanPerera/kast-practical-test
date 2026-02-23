@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/constants/responsive.dart';
 import '../../../../core/constants/app_strings.dart';
-import '../../../../core/utils/currency_formatter.dart';
 import '../../../../data/models/balance_model.dart';
 import '../../../widgets/buttons/primary_button.dart';
+import '../../../widgets/common/balance_display.dart';
 
 class BalanceHeader extends StatefulWidget {
   const BalanceHeader({super.key, required this.balancePages});
@@ -96,47 +96,12 @@ class _BalanceHeaderState extends State<BalanceHeader> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
-                        child: Column(
+                        child: BalanceDisplay(
+                          balance: item.balance,
+                          currency: item.currency,
+                          color: colors.onPrimary,
+                          currencyLabel: item.currencyLabel,
                           mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 2,
-                                    right: 2,
-                                  ),
-                                  child: Text(
-                                    CurrencyFormatter.symbolFor(item.currency),
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: colors.onPrimary,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  CurrencyFormatter.format(item.balance),
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: colors.onPrimary,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: AppDimensions.spacingXs),
-                            Text(
-                              item.currencyLabel,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: colors.onPrimary,
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],

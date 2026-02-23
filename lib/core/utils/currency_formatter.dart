@@ -28,4 +28,17 @@ abstract final class CurrencyFormatter {
         return '$code ';
     }
   }
+
+  static String labelFor(String code) {
+    switch (code.toUpperCase()) {
+      case 'USD':
+        return 'USD - Dollar';
+      case 'EUR':
+        return 'EUR - Euro';
+      case 'GBP':
+        return 'GBP - Pound';
+      default:
+        return code;
+    }
+  }
 }
