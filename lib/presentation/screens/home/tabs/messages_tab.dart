@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/responsive.dart';
 
 class MessagesTab extends StatelessWidget {
@@ -20,7 +21,7 @@ class MessagesTab extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               Text(
-                'Messages',
+                AppStrings.messages,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: colors.onSurface,
                 ),
@@ -28,7 +29,7 @@ class MessagesTab extends StatelessWidget {
               const Spacer(),
               Center(
                 child: Text(
-                  'No messages yet',
+                  AppStrings.noMessagesYet,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: colors.outline,
                   ),

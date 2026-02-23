@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notifications'),
+        title: const Text(AppStrings.notifications),
         backgroundColor: colors.surfaceContainerHighest,
         foregroundColor: colors.onSurface,
       ),
@@ -20,7 +21,7 @@ class NotificationsScreen extends StatelessWidget {
         padding: responsivePadding(context),
         child: Center(
           child: Text(
-            'Notifications – To be implemented',
+            '${AppStrings.notifications}${AppStrings.toBeImplemented}',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: colors.onSurface,
             ),

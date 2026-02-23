@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(AppStrings.profile),
         backgroundColor: colors.surfaceContainerHighest,
         foregroundColor: colors.onSurface,
       ),
@@ -20,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         padding: responsivePadding(context),
         child: Center(
           child: Text(
-            'Profile – To be implemented',
+            '${AppStrings.profile}${AppStrings.toBeImplemented}',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: colors.onSurface,
             ),

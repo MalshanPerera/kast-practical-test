@@ -126,7 +126,7 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
                     child: Padding(
                       padding: const EdgeInsets.all(AppDimensions.spacingXl),
                       child: Text(
-                        'No history yet',
+                        AppStrings.noHistoryYet,
                         style: TextStyle(
                           color: ext?.textSecondary ?? colors.outline,
                         ),

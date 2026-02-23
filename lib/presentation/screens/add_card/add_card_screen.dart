@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 
 class AddCardScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class AddCardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Card'),
+        title: const Text(AppStrings.addCardTitle),
         backgroundColor: colors.surfaceContainerHighest,
         foregroundColor: colors.onSurface,
       ),
@@ -20,7 +21,7 @@ class AddCardScreen extends StatelessWidget {
         padding: responsivePadding(context),
         child: Center(
           child: Text(
-            'Add Card – To be implemented',
+            '${AppStrings.addCardTitle}${AppStrings.toBeImplemented}',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: colors.onSurface,
             ),

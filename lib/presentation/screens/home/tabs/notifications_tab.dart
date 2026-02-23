@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/responsive.dart';
 
 class NotificationsTab extends StatelessWidget {
@@ -20,7 +21,7 @@ class NotificationsTab extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               Text(
-                'Notifications',
+                AppStrings.notifications,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: colors.onSurface,
                 ),
@@ -28,7 +29,7 @@ class NotificationsTab extends StatelessWidget {
               const Spacer(),
               Center(
                 child: Text(
-                  'No notifications',
+                  AppStrings.noNotifications,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: colors.outline,
                   ),

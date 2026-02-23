@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/responsive.dart';
 import '../../../../core/navigation/navigation_service.dart';
 
@@ -22,7 +23,7 @@ class ProfileTab extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               Text(
-                'Profile',
+                AppStrings.profile,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: colors.onSurface,
                 ),
@@ -32,17 +33,17 @@ class ProfileTab extends StatelessWidget {
               const SizedBox(height: AppDimensions.spacingLg),
               _SettingsItem(
                 icon: Icons.settings_outlined,
-                title: 'Settings',
+                title: AppStrings.settings,
                 onTap: () => NavigationService.toSettings(),
               ),
               _SettingsItem(
                 icon: Icons.help_outline,
-                title: 'Help & Support',
+                title: AppStrings.helpAndSupport,
                 onTap: () {},
               ),
               _SettingsItem(
                 icon: Icons.info_outline,
-                title: 'About',
+                title: AppStrings.about,
                 onTap: () {},
               ),
               const Spacer(),
@@ -74,13 +75,13 @@ class _ProfileHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'John Doe',
+              AppStrings.profileName,
               style: theme.textTheme.titleLarge?.copyWith(
                 color: colors.onSurface,
               ),
             ),
             Text(
-              'john.doe@email.com',
+              AppStrings.profileEmail,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colors.outline,
               ),

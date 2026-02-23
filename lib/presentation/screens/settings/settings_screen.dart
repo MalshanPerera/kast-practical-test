@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text(AppStrings.settings),
         backgroundColor: colors.surfaceContainerHighest,
         foregroundColor: colors.onSurface,
       ),
@@ -20,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
         padding: responsivePadding(context),
         child: Center(
           child: Text(
-            'Settings – To be implemented',
+            '${AppStrings.settings}${AppStrings.toBeImplemented}',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: colors.onSurface,
             ),

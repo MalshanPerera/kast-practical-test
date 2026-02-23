@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/responsive.dart';
 
 class MessagesScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class MessagesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Messages'),
+        title: const Text(AppStrings.messages),
         backgroundColor: colors.surfaceContainerHighest,
         foregroundColor: colors.onSurface,
       ),
@@ -20,7 +21,7 @@ class MessagesScreen extends StatelessWidget {
         padding: responsivePadding(context),
         child: Center(
           child: Text(
-            'Messages – To be implemented',
+            '${AppStrings.messages}${AppStrings.toBeImplemented}',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: colors.onSurface,
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_strings.dart';
 import 'app_routes.dart';
 import '../../data/models/card_model.dart';
 import '../../presentation/screens/add_card/add_card_screen.dart';
@@ -63,7 +64,7 @@ class AppRouter {
       default:
         return MaterialPageRoute<void>(
           settings: settings,
-          builder: (_) => const StubScreen(title: 'Not Found'),
+          builder: (_) => const StubScreen(title: AppStrings.notFound),
         );
     }
   }

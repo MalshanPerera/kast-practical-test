@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_color_extension.dart';
 import '../../../../data/models/card_model.dart';
 
@@ -76,7 +77,7 @@ class CreditCardWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'VALID DATE',
+                    AppStrings.validDate,
                     style: TextStyle(
                       fontSize: 10,
                       color: colors.onPrimary.withValues(alpha: 0.8),

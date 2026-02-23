@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/constants/app_dimensions.dart';
+import '../../../core/constants/app_strings.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
@@ -9,7 +11,7 @@ class SecondaryButton extends StatelessWidget {
     required this.onPressed,
   }) : assert(
          label != null || icon != null,
-         'Either label or icon must be provided',
+         AppStrings.eitherLabelOrIcon,
        );
 
   final String? label;

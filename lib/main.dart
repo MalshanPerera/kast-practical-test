@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'core/constants/app_strings.dart';
 import 'core/navigation/app_router.dart';
 import 'core/navigation/navigation_service.dart';
 import 'core/state/app_state.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         builder: (context) {
           _loadMockData(context);
           return MaterialApp(
-            title: 'Banking App',
+            title: AppStrings.appTitle,
             theme: AppTheme.light,
             debugShowCheckedModeBanner: kDebugMode,
             navigatorKey: NavigationService.navigatorKey,
