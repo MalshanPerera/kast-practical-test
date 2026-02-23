@@ -75,6 +75,7 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
                           balance: card.balance,
                           currency: card.currency,
                           color: colors.onSurface,
+                          showCurrencyLabel: false,
                         ),
                       ),
                       const SizedBox(height: AppDimensions.spacingLg),

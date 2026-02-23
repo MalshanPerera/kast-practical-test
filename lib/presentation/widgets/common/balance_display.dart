@@ -12,6 +12,7 @@ class BalanceDisplay extends StatelessWidget {
     this.currencyLabel,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.mainAxisAlignment = MainAxisAlignment.start,
+    this.showCurrencyLabel = true,
   });
 
   final double balance;
@@ -20,10 +21,12 @@ class BalanceDisplay extends StatelessWidget {
   final String? currencyLabel;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
+  final bool showCurrencyLabel;
 
   @override
   Widget build(BuildContext context) {
     final label = currencyLabel ?? CurrencyFormatter.labelFor(currency);
+    final theme = Theme.of(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -56,13 +59,11 @@ class BalanceDisplay extends StatelessWidget {
           ],
         ),
         const SizedBox(height: AppDimensions.spacingXs),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            color: color,
+        if (showCurrencyLabel)
+          Text(
+            label,
+            style: theme.textTheme.bodyMedium?.copyWith(color: color),
           ),
-        ),
       ],
     );
   }
