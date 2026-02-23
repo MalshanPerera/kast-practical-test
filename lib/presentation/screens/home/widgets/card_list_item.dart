@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/constants/responsive.dart';
-import '../../../../core/theme/app_color_extension.dart';
 import '../../../../core/utils/currency_formatter.dart';
 import '../../../../data/models/card_model.dart';
 
@@ -15,7 +14,6 @@ class CardListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
-    final ext = theme.extension<AppColorExtension>();
 
     final padding = responsivePadding(context);
     return Padding(
@@ -45,31 +43,20 @@ class CardListItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: AppDimensions.spacingMd),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${card.currency} *${card.cardNumber.split(' ').last}',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: colors.onSurface,
-                        ),
-                      ),
-                      const SizedBox(height: AppDimensions.spacingXs),
-                      Text(
-                        '${CurrencyFormatter.format(card.balance)} ${card.currency}',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 12,
-                          color: ext?.textSecondary ?? colors.outline,
-                        ),
-                      ),
-                    ],
+                Text(
+                  '${card.currency} *${card.cardNumber.split(' ').last}',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: colors.onSurface,
                   ),
                 ),
-                Icon(
-                  Icons.keyboard_arrow_right,
-                  color: ext?.textHint ?? colors.outline,
+                const Spacer(),
+                Text(
+                  '${CurrencyFormatter.format(card.balance)} ${card.currency}',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: colors.onSurface,
+                  ),
                 ),
               ],
             ),
