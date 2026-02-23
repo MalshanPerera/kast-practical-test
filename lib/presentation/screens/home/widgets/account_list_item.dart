@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
-import 'package:test_project/core/utils/currency_formatter.dart';
-import 'package:test_project/data/models/account_model.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/responsive.dart';
+import '../../../../core/theme/app_color_extension.dart';
+import '../../../../core/utils/currency_formatter.dart';
+import '../../../../data/models/account_model.dart';
 
 class AccountListItem extends StatefulWidget {
   const AccountListItem({super.key, required this.account, this.onTap});
@@ -20,10 +21,15 @@ class _AccountListItemState extends State<AccountListItem> {
   @override
   Widget build(BuildContext context) {
     final account = widget.account;
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final ext = theme.extension<AppColorExtension>();
+
+    final padding = responsivePadding(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.spacingMd),
+      padding: EdgeInsets.symmetric(horizontal: padding.left),
       child: Material(
-        color: AppColors.background,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
         child: InkWell(
           onTap: () {
@@ -43,14 +49,14 @@ class _AccountListItemState extends State<AccountListItem> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
+                        color: colors.primary.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(
                           AppDimensions.radiusSm,
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.account_balance_wallet_outlined,
-                        color: AppColors.primary,
+                        color: colors.primary,
                         size: AppDimensions.iconSizeMd,
                       ),
                     ),
@@ -58,18 +64,17 @@ class _AccountListItemState extends State<AccountListItem> {
                     Expanded(
                       child: Text(
                         account.accountNumber,
-                        style: const TextStyle(
+                        style: theme.textTheme.bodyMedium?.copyWith(
                           fontSize: 12,
-                          fontWeight: FontWeight.normal,
                         ),
                       ),
                     ),
                     AnimatedRotation(
                       turns: _expanded ? 0.5 : 0,
                       duration: const Duration(milliseconds: 200),
-                      child: const Icon(
+                      child: Icon(
                         Icons.keyboard_arrow_down,
-                        color: AppColors.textHint,
+                        color: ext?.textHint ?? colors.outline,
                       ),
                     ),
                   ],
@@ -95,7 +100,7 @@ class _AccountListItemState extends State<AccountListItem> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: AppColors.primary.withValues(
+                                      color: colors.primary.withValues(
                                         alpha: 0.1,
                                       ),
                                       borderRadius: BorderRadius.circular(
@@ -105,10 +110,10 @@ class _AccountListItemState extends State<AccountListItem> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       CurrencyFormatter.symbolFor(b.currency),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.primary,
+                                        color: colors.primary,
                                       ),
                                     ),
                                   ),
@@ -117,9 +122,8 @@ class _AccountListItemState extends State<AccountListItem> {
                                   ),
                                   Text(
                                     '${CurrencyFormatter.format(b.balance)} ${b.currency}',
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: AppColors.textPrimary,
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      color: colors.onSurface,
                                     ),
                                   ),
                                 ],

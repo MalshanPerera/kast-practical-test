@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_dimensions.dart';
-import '../../../core/constants/app_strings.dart';
-import '../../../core/utils/currency_formatter.dart';
-import '../../../data/models/balance_model.dart';
-import '../common/primary_button.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/responsive.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/utils/currency_formatter.dart';
+import '../../../../data/models/balance_model.dart';
+import '../../../widgets/buttons/primary_button.dart';
 
 class BalanceHeader extends StatefulWidget {
   const BalanceHeader({super.key, required this.balancePages});
@@ -54,15 +54,17 @@ class _BalanceHeaderState extends State<BalanceHeader> {
     final pages = widget.balancePages;
     if (pages.isEmpty) return const SizedBox.shrink();
 
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+
+    final padding = responsivePadding(context);
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(
-        AppDimensions.spacingMd,
-        AppDimensions.spacingMd,
-        AppDimensions.spacingMd,
-        AppDimensions.spacingLg,
+      padding: padding.copyWith(
+        top: AppDimensions.spacingMd,
+        bottom: AppDimensions.spacingLg,
       ),
-      decoration: const BoxDecoration(color: AppColors.primary),
+      decoration: BoxDecoration(color: colors.primary),
       child: SafeArea(
         bottom: false,
         child: Column(
@@ -71,14 +73,14 @@ class _BalanceHeaderState extends State<BalanceHeader> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: AppDimensions.avatarSize / 2,
-                  backgroundColor: AppColors.onPrimary,
-                  child: Icon(Icons.person, color: AppColors.primary),
+                  backgroundColor: colors.onPrimary,
+                  child: Icon(Icons.person, color: colors.primary),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(Icons.search, color: AppColors.onPrimary),
+                  icon: Icon(Icons.search, color: colors.onPrimary),
                 ),
               ],
             ),
@@ -109,19 +111,19 @@ class _BalanceHeaderState extends State<BalanceHeader> {
                                   ),
                                   child: Text(
                                     CurrencyFormatter.symbolFor(item.currency),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: AppColors.onPrimary,
+                                      color: colors.onPrimary,
                                     ),
                                   ),
                                 ),
                                 Text(
                                   CurrencyFormatter.format(item.balance),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
-                                    color: AppColors.onPrimary,
+                                    color: colors.onPrimary,
                                   ),
                                 ),
                               ],
@@ -129,9 +131,9 @@ class _BalanceHeaderState extends State<BalanceHeader> {
                             const SizedBox(height: AppDimensions.spacingXs),
                             Text(
                               item.currencyLabel,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
-                                color: AppColors.onPrimary,
+                                color: colors.onPrimary,
                               ),
                             ),
                           ],

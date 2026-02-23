@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
+
+import '../../../core/constants/app_dimensions.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -14,12 +14,13 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return SizedBox(
       height: AppDimensions.buttonHeight,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryLight,
-          foregroundColor: AppColors.onPrimary,
+          backgroundColor: colors.primaryContainer,
+          foregroundColor: colors.onPrimary,
           minimumSize: const Size.fromHeight(AppDimensions.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppDimensions.radiusMd),

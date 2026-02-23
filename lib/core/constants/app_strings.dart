@@ -1,15 +1,11 @@
-/// Application string constants.
 abstract final class AppStrings {
   AppStrings._();
 
-  // Home
   static const String addMoney = 'Add money';
   static const String exchange = 'Exchange';
   static const String accounts = 'Accounts';
   static const String cards = 'Cards';
   static const String addCard = 'ADD CARD';
-
-  // Card details
   static const String card = 'Card';
   static const String operations = 'Operations';
   static const String history = 'History';

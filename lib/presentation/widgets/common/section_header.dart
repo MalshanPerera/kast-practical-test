@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
+import '../../../core/constants/app_dimensions.dart';
+import '../../../core/constants/responsive.dart';
 
 class SectionHeader extends StatelessWidget {
   const SectionHeader({super.key, required this.title, this.trailing});
@@ -10,21 +10,17 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final padding = responsivePadding(context);
     return Padding(
-      padding: const EdgeInsets.only(
-        left: AppDimensions.spacingMd,
-        right: AppDimensions.spacingMd,
-        bottom: AppDimensions.spacingSm,
-      ),
+      padding: padding.copyWith(bottom: AppDimensions.spacingSm, top: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 16,
+            style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
             ),
           ),
           ...[trailing].whereType<Widget>(),

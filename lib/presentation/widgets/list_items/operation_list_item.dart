@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_dimensions.dart';
+import '../../../core/constants/responsive.dart';
 
 class OperationListItem extends StatelessWidget {
   const OperationListItem({
@@ -17,10 +17,13 @@ class OperationListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final padding = responsivePadding(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.spacingMd),
+      padding: EdgeInsets.symmetric(horizontal: padding.left),
       child: Material(
-        color: AppColors.background,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
         child: InkWell(
           onTap: onTap,
@@ -33,13 +36,14 @@ class OperationListItem extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppDimensions.radiusSm),
+                    color: colors.primary.withValues(alpha: 0.1),
+                    borderRadius:
+                        BorderRadius.circular(AppDimensions.radiusSm),
                   ),
                   alignment: Alignment.center,
                   child: Icon(
                     icon ?? Icons.credit_card_outlined,
-                    color: AppColors.primary,
+                    color: colors.primary,
                     size: AppDimensions.iconSizeMd,
                   ),
                 ),
@@ -47,9 +51,8 @@ class OperationListItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: AppColors.textPrimary,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: colors.onSurface,
                     ),
                   ),
                 ),

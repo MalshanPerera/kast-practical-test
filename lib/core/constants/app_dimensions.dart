@@ -1,4 +1,3 @@
-/// Application spacing and sizing constants.
 abstract final class AppDimensions {
   AppDimensions._();
 

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_dimensions.dart';
-import '../../core/constants/app_strings.dart';
-import '../../core/utils/currency_formatter.dart';
-import '../../data/models/card_model.dart';
-import '../widgets/card_details/credit_card_widget.dart';
-import '../widgets/card_details/operation_list_item.dart';
+import '../../../core/constants/app_dimensions.dart';
+import '../../../core/constants/app_strings.dart';
+import '../../../core/constants/responsive.dart';
+import '../../../core/theme/app_color_extension.dart';
+import '../../../core/utils/currency_formatter.dart';
+import '../../../data/mock/mock_data.dart';
+import '../../../data/models/card_model.dart';
+import '../../widgets/list_items/operation_list_item.dart';
+import 'widgets/credit_card_widget.dart';
 
 class CardDetailsScreen extends StatefulWidget {
   const CardDetailsScreen({super.key, this.card});
@@ -35,12 +37,15 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    final card = widget.card ?? _defaultCard;
+    final card = widget.card ?? MockCards.defaultCard;
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final ext = theme.extension<AppColorExtension>();
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.textPrimary,
+        backgroundColor: colors.surfaceContainerHighest,
+        foregroundColor: colors.onSurface,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
@@ -54,14 +59,14 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: AppColors.surface,
+            color: colors.surfaceContainerHighest,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.spacingMd,
-                    vertical: AppDimensions.spacingMd,
+                  padding: responsivePadding(context).copyWith(
+                    top: AppDimensions.spacingMd,
+                    bottom: AppDimensions.spacingMd,
                   ),
                   child: Column(
                     children: [
@@ -71,10 +76,8 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
                             card.balance,
                             card.currency,
                           ),
-                          style: const TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textPrimary,
+                          style: theme.textTheme.headlineLarge?.copyWith(
+                            color: colors.onSurface,
                           ),
                         ),
                       ),
@@ -85,21 +88,21 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
                   ),
                 ),
                 Container(
-                  color: AppColors.background,
+                  color: colors.surface,
                   child: TabBar(
                     controller: _tabController,
-                    labelColor: AppColors.primary,
-                    unselectedLabelColor: AppColors.textHint,
-                    indicatorColor: AppColors.primary,
+                    labelColor: colors.primary,
+                    unselectedLabelColor: ext?.textHint ?? colors.outline,
+                    indicatorColor: colors.primary,
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: UnderlineTabIndicator(
                       borderRadius: BorderRadius.circular(
                         AppDimensions.radiusMd,
                       ),
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         width: 2.5,
                         strokeAlign: BorderSide.strokeAlignCenter,
-                        color: AppColors.primary,
+                        color: colors.primary,
                       ),
                     ),
                     dividerColor: Colors.transparent,
@@ -114,17 +117,19 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
           ),
           Expanded(
             child: Container(
-              color: AppColors.surface,
+              color: colors.surfaceContainerHighest,
               child: TabBarView(
                 controller: _tabController,
                 children: [
                   _OperationsTab(),
-                  const Center(
+                  Center(
                     child: Padding(
-                      padding: EdgeInsets.all(AppDimensions.spacingXl),
+                      padding: const EdgeInsets.all(AppDimensions.spacingXl),
                       child: Text(
                         'No history yet',
-                        style: TextStyle(color: AppColors.textSecondary),
+                        style: TextStyle(
+                          color: ext?.textSecondary ?? colors.outline,
+                        ),
                       ),
                     ),
                   ),
@@ -136,33 +141,12 @@ class _CardDetailsScreenState extends State<CardDetailsScreen>
       ),
     );
   }
-
-  static final CardModel _defaultCard = const CardModel(
-    id: '1',
-    cardNumber: '5436 5436 **** 6643',
-    expiryDate: '08/24',
-    currency: 'EUR',
-    balance: 8199.24,
-  );
 }
 
 class _OperationsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const operations = [
-      (AppStrings.topUpCard, Icons.add_circle_outline),
-      (AppStrings.payments, Icons.payment_outlined),
-      (AppStrings.cardOutput, Icons.arrow_forward),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-      (AppStrings.takeAllMoney, Icons.account_balance_wallet_outlined),
-    ];
-
+    final operations = MockOperations.operations;
     return ListView.builder(
       itemCount: operations.length,
       itemBuilder: (context, index) {
@@ -173,7 +157,11 @@ class _OperationsTab extends StatelessWidget {
             bottom: AppDimensions.spacingSm,
             top: isFirst ? AppDimensions.spacingMd : 0,
           ),
-          child: OperationListItem(title: op.$1, icon: op.$2, onTap: () {}),
+          child: OperationListItem(
+            title: op.title,
+            icon: op.icon,
+            onTap: () {},
+          ),
         );
       },
     );

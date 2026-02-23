@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
-import 'package:test_project/data/models/card_model.dart';
+
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/theme/app_color_extension.dart';
+import '../../../../data/models/card_model.dart';
 
 class CreditCardWidget extends StatelessWidget {
   const CreditCardWidget({super.key, required this.card});
@@ -10,18 +11,24 @@ class CreditCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final ext = theme.extension<AppColorExtension>();
+    final start = ext?.cardGradientStart ?? colors.primary;
+    final end = ext?.cardGradientEnd ?? colors.primaryContainer;
+
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spacingLg),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [AppColors.primary, AppColors.primaryLight],
+          colors: [start, end],
         ),
         borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.3),
+            color: colors.primary.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -38,12 +45,12 @@ class CreditCardWidget extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: AppColors.onPrimary.withValues(alpha: 0.2),
+                  color: colors.onPrimary.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(AppDimensions.radiusSm),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.credit_card,
-                  color: AppColors.onPrimary,
+                  color: colors.onPrimary,
                   size: AppDimensions.iconSizeMd,
                 ),
               ),
@@ -52,10 +59,10 @@ class CreditCardWidget extends StatelessWidget {
           const SizedBox(height: AppDimensions.spacingXl),
           Text(
             card.cardNumber,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: AppColors.onPrimary,
+              color: colors.onPrimary,
               letterSpacing: 2,
             ),
           ),
@@ -72,7 +79,7 @@ class CreditCardWidget extends StatelessWidget {
                     'VALID DATE',
                     style: TextStyle(
                       fontSize: 10,
-                      color: AppColors.onPrimary.withValues(alpha: 0.8),
+                      color: colors.onPrimary.withValues(alpha: 0.8),
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -81,7 +88,7 @@ class CreditCardWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.onPrimary.withValues(alpha: 0.9),
+                      color: colors.onPrimary.withValues(alpha: 0.9),
                     ),
                   ),
                 ],

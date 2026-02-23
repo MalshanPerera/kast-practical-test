@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
+import '../../../core/constants/app_dimensions.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
@@ -17,25 +16,25 @@ class SecondaryButton extends StatelessWidget {
   final IconData? icon;
   final VoidCallback onPressed;
 
-  static final _style = ElevatedButton.styleFrom(
-    backgroundColor: AppColors.primaryLight,
-    foregroundColor: AppColors.primary,
-    minimumSize: const Size.fromHeight(AppDimensions.buttonHeight),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-    ),
-    elevation: 0,
-    shadowColor: Colors.transparent,
-  );
-
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final style = ElevatedButton.styleFrom(
+      backgroundColor: colors.primaryContainer,
+      foregroundColor: colors.primary,
+      minimumSize: const Size.fromHeight(AppDimensions.buttonHeight),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
+      ),
+      elevation: 0,
+      shadowColor: Colors.transparent,
+    );
     if (icon != null && (label == null || label!.isEmpty)) {
       return SizedBox(
         width: AppDimensions.avatarSize,
         height: AppDimensions.avatarSize,
         child: ElevatedButton(
-          style: _style.copyWith(
+          style: style.copyWith(
             padding: WidgetStateProperty.all(EdgeInsets.zero),
             minimumSize: WidgetStateProperty.all(Size.zero),
           ),
@@ -47,7 +46,7 @@ class SecondaryButton extends StatelessWidget {
     return SizedBox(
       height: AppDimensions.buttonHeight,
       child: ElevatedButton(
-        style: _style,
+        style: style,
         onPressed: onPressed,
         child: Text(label!),
       ),

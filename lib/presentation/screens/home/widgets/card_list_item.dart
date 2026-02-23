@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/core/constants/app_colors.dart';
-import 'package:test_project/core/constants/app_dimensions.dart';
-import 'package:test_project/core/utils/currency_formatter.dart';
-import 'package:test_project/data/models/card_model.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/responsive.dart';
+import '../../../../core/theme/app_color_extension.dart';
+import '../../../../core/utils/currency_formatter.dart';
+import '../../../../data/models/card_model.dart';
 
 class CardListItem extends StatelessWidget {
   const CardListItem({super.key, required this.card, this.onTap});
@@ -12,10 +13,15 @@ class CardListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final ext = theme.extension<AppColorExtension>();
+
+    final padding = responsivePadding(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.spacingMd),
+      padding: EdgeInsets.symmetric(horizontal: padding.left),
       child: Material(
-        color: AppColors.background,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
         child: InkWell(
           onTap: onTap,
@@ -28,12 +34,13 @@ class CardListItem extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppDimensions.radiusSm),
+                    color: colors.primary.withValues(alpha: 0.1),
+                    borderRadius:
+                        BorderRadius.circular(AppDimensions.radiusSm),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.credit_card_outlined,
-                    color: AppColors.primary,
+                    color: colors.primary,
                     size: AppDimensions.iconSizeMd,
                   ),
                 ),
@@ -44,26 +51,25 @@ class CardListItem extends StatelessWidget {
                     children: [
                       Text(
                         '${card.currency} *${card.cardNumber.split(' ').last}',
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w500,
-                          color: AppColors.textPrimary,
+                          color: colors.onSurface,
                         ),
                       ),
                       const SizedBox(height: AppDimensions.spacingXs),
                       Text(
                         '${CurrencyFormatter.format(card.balance)} ${card.currency}',
-                        style: const TextStyle(
+                        style: theme.textTheme.bodyMedium?.copyWith(
                           fontSize: 12,
-                          color: AppColors.textSecondary,
+                          color: ext?.textSecondary ?? colors.outline,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.keyboard_arrow_right,
-                  color: AppColors.textHint,
+                  color: ext?.textHint ?? colors.outline,
                 ),
               ],
             ),

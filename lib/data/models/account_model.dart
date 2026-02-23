@@ -1,4 +1,4 @@
-import 'package:test_project/data/models/balance_model.dart';
+import 'balance_model.dart';
 
 class AccountModel {
   const AccountModel({
