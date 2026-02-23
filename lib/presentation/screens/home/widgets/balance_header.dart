@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_dimensions.dart';
-import '../../../../core/constants/responsive.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../core/constants/responsive.dart';
 import '../../../../data/models/balance_model.dart';
 import '../../../widgets/buttons/primary_button.dart';
 import '../../../widgets/common/balance_display.dart';
@@ -22,7 +22,7 @@ class _BalanceHeaderState extends State<BalanceHeader> {
 
   late final PageController _pageController = PageController(
     initialPage: _initialPage,
-    viewportFraction: 0.88,
+    viewportFraction: 0.85,
   );
 
   @override
